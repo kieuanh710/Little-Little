@@ -1,0 +1,81 @@
+:root {
+    --background-color: #F6F6F6;
+    --btn-color: #fff;
+}
+
+* {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 1rem;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    width: 100%;
+    height: auto;
+    background: linear-gradient(#FFDB7E, #FF7A00);
+}
+
+.main {
+   
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+.container{
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.background{
+    background: url("/public/assets/img/background.jpg") no-repeat ;
+    background-repeat: none;
+    margin: 35px 45px;
+    border-bottom-left-radius: 50px;  
+    border-bottom-right-radius: 50px;  
+    margin: 40px 60px 50px 60px;
+    padding: 50px 0;
+    height: auto;
+}
+ /* button */
+ .btn{
+    background: #FF000A;
+    filter: drop-shadow(0px 4px 8px rgba(165, 15, 15, 0.45));
+    box-shadow: 0 6px 0 0 #BD000B;;
+    border-radius: 16px;
+    width: 70%;
+    height: 50px;
+    outline: none;
+    border: none;
+}
+.btn-submit{
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 41px;
+    color: #FFFFFF;
+    margin-left: 70px;
+    margin-top: 22px;
+}
+.btn-detail{
+    margin-top: 24px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+
