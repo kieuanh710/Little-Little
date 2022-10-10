@@ -19,8 +19,32 @@
         @include('layouts.navbar')
         @yield('home')
         @yield('event')
+        @yield('contact')
+        @yield('payment')
+        @yield('paymentSuccess')
+        @yield('detailEvent')
     </div>
 
 
+    <script src="/assets/js/active.js"></script>
+    <script type="text/javascript">
+            //getUsers();
+            // $('#idTypeTicket').on('keyup', function() {
+            //     getUsers();
+            // });
+           
+        
+        function getUsers(){
+            var search = $('#idTypeTicket').val();
+          
+            // alert(active);
+            // alert(connect);
+            alert(search);
+    
+            
+                
+        };
+    
+    </script>
 </body>
 </html>

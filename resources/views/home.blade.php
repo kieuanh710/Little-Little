@@ -63,20 +63,21 @@
                         <div class="home_reservation--title">
                             <span>Vé của bạn</span>
                         </div>
+                        @include('layouts.alert')
                         <div class="home_reservation-form">
-                            <form action="">
+                            <form action="" method="POST">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col l-10">
+                                        <div class="col l-12">
                                             <div class="form-group">
-                                                <input type="text" name="name" class="form-control" placeholder=""
-                                                    value="">
-                                            </div>
-                                        </div>
-                                        <div class="col l-2">
-                                            <div class="dropdown">
-                                                dsf
-                                            </div>
+                                                <select name="idTypeTicket" id="idTypeTicket" class="form-control">
+                                                    @foreach ($tickets as $list)
+                                                    <option selected="selected" value="{{$list->idTicket}}">{{$list->nameTicket}}</option>
+                                                    @endforeach
+                                                </select>
+                                               
+                                               
+                                            </div> 
                                         </div>
                                     </div>
                                     <div class="row">
@@ -94,7 +95,9 @@
                                         </div>
                                         <div class="col l-2">
                                             <div class="calendar">
-                                                sadsa
+                                                <button class="calendar round"> 
+                                                    <i class="fas fa-thin fa-calendar-days"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -124,6 +127,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-submit">Đặt vé</button>
+                                @csrf
                             </form>
                         </div>
                     </div>

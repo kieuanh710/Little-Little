@@ -13,76 +13,22 @@
                     <div class="event_item">
                         <img src="./assets/img/Rectangle 1.png" alt="">
                         <div class="event_item--content">
+                            @foreach($listEvent as $key => $item)
                             <h3>Sự kiện</h3>
-                            <span>Đầm sen Park</span>
+                            <span>{{$item->nameEvent}}</span>
                             <div class="event_item--date">
                                 <i class="fas fa-calendar"></i>
                                 <span>Start - End</span>
                                 
                             </div>
                             <div class="event_item--price">
-                                <span>25.000 VND</span>
+                                <span>{{$item->priceEvent}}</span>
                             </div>
-                            <a href="#" class="btn btn-detail">Xem chi tiết</a>
+                            <a href="{{route('detail', ['id'=>$item->idEvent])}}" class="btn btn-detail">Xem chi tiết</a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-                <div class="col l-3">
-                    <div class="event_item">
-                        <img src="./assets/img/Rectangle 1.png" alt="">
-                        <div class="event_item--content">
-                            <h3>Sự kiện</h3>
-                            <span>Đầm sen Park</span>
-                            <div class="event_item--date">
-                                <i class="fas fa-calendar"></i>
-                                <span>Start - End</span>
-                                
-                            </div>
-                            <div class="event_item--price">
-                                <span>25.000 VND</span>
-                            </div>
-                            <a href="#" class="btn btn-detail">Xem chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l-3">
-                    <div class="event_item">
-                        <img src="./assets/img/Rectangle 1.png" alt="">
-                        <div class="event_item--content">
-                            <h3>Sự kiện</h3>
-                            <span>Đầm sen Park</span>
-                            <div class="event_item--date">
-                                <i class="fas fa-calendar"></i>
-                                <span>Start - End</span>
-                                
-                            </div>
-                            <div class="event_item--price">
-                                <span>25.000 VND</span>
-                            </div>
-                            <a href="#" class="btn btn-detail">Xem chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l-3">
-                    <div class="event_item">
-                        <img src="./assets/img/Rectangle 1.png" alt="">
-                        <div class="event_item--content">
-                            <h3>Sự kiện</h3>
-                            <span>Đầm sen Park</span>
-                            <div class="event_item--date">
-                                <i class="fas fa-calendar"></i>
-                                <span>Start - End</span>
-                                
-                            </div>
-                            <div class="event_item--price">
-                                <span>25.000 VND</span>
-                            </div>
-                            <a href="#" class="btn btn-detail">Xem chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-
-                
             </div>
         </div>
     </div>

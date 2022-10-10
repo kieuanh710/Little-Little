@@ -11,9 +11,15 @@
                 <div class="col l-8 ">
                     <div class="navbar_content">
                         <ul class="navbar_content--list">
-                            <li class="navbar_content--item"><a href="#">Trang chủ</a></li>
-                            <li class="navbar_content--item"><a href="#">Sự kiện</a></li>
-                            <li class="navbar_content--item"><a href="#">Liên hệ</a></li>
+                            <li class="navbar_content--item link">
+                                <a class="nav-link" href="{{route('home')}}">Trang chủ</a>
+                            </li>
+                            <li class="navbar_content--item link">
+                                <a class="nav-link" href="{{route('event')}}">Sự kiện</a>
+                            </li>
+                            <li class="navbar_content--item link">
+                                <a class="nav-link" href="{{route('contact')}}">Liên hệ</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
