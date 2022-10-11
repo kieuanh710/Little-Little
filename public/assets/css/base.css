@@ -52,7 +52,7 @@ img{
     border: 2px solid #FFFFFF;
     border-radius: 33px;
     padding: 10px 24px !important;
-    color: #fff;
+    color: #fff !important;
 }
 /* line */
 .line{

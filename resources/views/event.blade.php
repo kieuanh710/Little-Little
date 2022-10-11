@@ -9,11 +9,11 @@
     <div class="event_container">
         <div class="event_content">
             <div class="row">
+                @foreach($listEvent as $key => $item)
                 <div class="col l-3">
                     <div class="event_item">
                         <img src="./assets/img/Rectangle 1.png" alt="">
                         <div class="event_item--content">
-                            @foreach($listEvent as $key => $item)
                             <h3>Sự kiện</h3>
                             <span>{{$item->nameEvent}}</span>
                             <div class="event_item--date">
@@ -22,13 +22,13 @@
                                 
                             </div>
                             <div class="event_item--price">
-                                <span>{{$item->priceEvent}}</span>
+                                <span>{{$item->priceEvent}} VNĐ</span>
                             </div>
                             <a href="{{route('detail', ['id'=>$item->idEvent])}}" class="btn btn-detail">Xem chi tiết</a>
-                            @endforeach
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

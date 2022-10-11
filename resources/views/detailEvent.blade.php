@@ -19,7 +19,7 @@
                                     <div class="detailEvent_item--content">
                                         <div class="detailEvent_item--date">
                                             <i class="fas fa-calendar"></i>
-                                            <span>Start - End</span>
+                                            <span>{{$detail->start}} - </span>
                                             
                                         </div>
                                         <span>Đầm sen Park</span>

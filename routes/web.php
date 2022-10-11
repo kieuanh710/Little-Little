@@ -19,8 +19,9 @@ Route::prefix('')->group(function () {
     Route::get('/home', [HomeController::class,'index'])->name('home');
     Route::post('/home', [HomeController::class,'addOrder'])->name('add');
     Route::get('/event', [HomeController::class,'event'])->name('event');
-    Route::get('/contact', [HomeController::class,'contact'])->name('contact');
     Route::get('/detail', [HomeController::class,'detail'])->name('detail');
+    Route::get('/contact', [HomeController::class,'contact'])->name('contact');
+    Route::post('/contact', [HomeController::class,'addContact'])->name('addcontact');
     Route::get('/payment', [HomeController::class,'payment'])->name('payment');
     Route::get('/paymentSuccess', [HomeController::class,'detail'])->name('paymentSuccess');
 

@@ -13,7 +13,7 @@
                     <div class="contact_form line">
                         <div class="contact_form--content">
                             <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac mollis justo. Etiam volutpat tellus quis risus volutpat, ut posuere ex facilisis.</span>
-                            <form action="" method="" class="form-contact">
+                            <form action="" method="post" class="form-contact">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col l-5">
@@ -47,11 +47,13 @@
                                     
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <textarea name="" class="form-control" id="" cols="100" rows="5" placeholder="Lời nhắn" spellcheck="false"></textarea>
+                                            <textarea name="message" class="form-control" id="" cols="100" rows="5" placeholder="Lời nhắn" spellcheck="false"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-submit">Đặt vé</button>
+                                <button type="submit" id="myBtn" class="btn btn-submit"  data-bs-toggle="modal" data-bs-target="#exampleModal">Đặt vé</button>
+                                @csrf
+                               
                             </form>
                         </div>
                     </div>
@@ -93,6 +95,24 @@
             </div>
         </div>
     </div>
+    @if(session('success'))
+    <!-- The Modal -->
+    <div id="myModal" class="modal alert alert-success">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            {{session('success')}}
+          </div>
+      </div>
+    @endif
+                {{-- <!-- The Modal -->
+                <div id="myModal" class="modal">
+                  <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Gửi liên hệ thành công. Vui lòng kiên nhẫn đợi phản hồi từ chúng tôi, bạn nhé!</p>
+                    </div>
+                </div> --}}
     <div class="contact_image">
         <img class="contact_image--item-1" src="./assets/img/Alex_AR_Lay_Do shadow 1.png" alt="">
     </div>
