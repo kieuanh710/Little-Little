@@ -18,7 +18,7 @@
                             <span>{{$item->nameEvent}}</span>
                             <div class="event_item--date">
                                 <i class="fas fa-calendar"></i>
-                                <span>Start - End</span>
+                                <span>{{$item->start}} - {{$item->end}}</span>
                                 
                             </div>
                             <div class="event_item--price">

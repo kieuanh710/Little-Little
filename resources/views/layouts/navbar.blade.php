@@ -5,8 +5,10 @@
             <div class="row sm-gutter content">
                 <div class="col l-2">
                     <div class="navbar_logo">
-                        <img src="./assets/img/Little & Little Logo (ngang) 1.png" alt=" ">
-                    </div>
+                        <a href="/home">
+                            <img src="./assets/img/Little & Little Logo (ngang) 1.png" alt=" ">
+                    </a> 
+                </div>
                 </div>
                 <div class="col l-8 ">
                     <div class="navbar_content">

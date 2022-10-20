@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +23,8 @@ Route::prefix('')->group(function () {
     Route::get('/detail', [HomeController::class,'detail'])->name('detail');
     Route::get('/contact', [HomeController::class,'contact'])->name('contact');
     Route::post('/contact', [HomeController::class,'addContact'])->name('addcontact');
-    Route::get('/payment', [HomeController::class,'payment'])->name('payment');
-    Route::get('/paymentSuccess', [HomeController::class,'detail'])->name('paymentSuccess');
+    Route::post('/payment', [HomeController::class,'payment'])->name('payment');
+    Route::get('/payment', [HomeController::class,'showpayment']);
+    Route::get('/paymentSuccess', [HomeController::class,'paymentSuccess'])->name('paymentSuccess');
 
 });

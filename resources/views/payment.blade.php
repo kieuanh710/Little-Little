@@ -8,6 +8,15 @@
     <!-- content -->
     <div class="payment_container">
         <div class="payment_content">
+            <form 
+                role="form" 
+                action="{{route('payment')}}" 
+                method="post" 
+                class="require-validation"
+                data-cc-on-file="false"
+                data-stripe-publishable-key="{{env('STRIPE_KEY')}}"
+                id="payment-form">
+                @csrf
             <div class="row">
                 <div class="col l-8">
                     <div class="payment_form line">
@@ -15,14 +24,15 @@
                             <div class="payment_info--title">
                                 <span>Vé cổng - Vé gia đình</span>
                             </div>
-                            <form action="" method="" class="form-payment">
+                            {{-- <form action="" method="post" class="form-payment"> --}}
+                           
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col l-4">
                                             <div class="form-group">
                                                 <label for="">Số tiền thanh toán</label>
-                                                <input type="text" name="" class="form-control"
-                                            value="">
+                                                <input type="text" name="totalPrice" class="form-control"
+                                            value="{{$orders->quantity * $orders->priceTicket}}">
                                             </div>
                                         </div>
                                         <div class="col l-4">
@@ -36,7 +46,7 @@
                                             <div class="form-group">
                                                 <label for="">Ngày sử dụng</label>
                                                 <input type="text" name="" class="form-control"
-                                                     value="">
+                                                     value="{{$orders->date}}">
                                             </div>
                                         </div>
                                     </div>
@@ -45,8 +55,8 @@
                                         <div class="col l-6">
                                             <div class="form-group">
                                                 <label for="">Thông tin liên hệ</label>
-                                                <input type="text" name="" class="form-control"
-                                                     value="">
+                                                <input type="text" name="name" class="form-control"
+                                                     value="{{$orders->name}}">
                                             </div>
                                         </div>
                                     </div>
@@ -55,7 +65,7 @@
                                             <div class="form-group">
                                                 <label for="">Điện thoại</label>
                                                 <input type="text" name="" class="form-control"
-                                                    value="">
+                                                    value="{{$orders->phone}}">
                                             </div>
                                         </div>
                                     </div>
@@ -64,69 +74,79 @@
                                             <div class="form-group">
                                                 <label for="">Email</label>
                                                 <input type="text" name="" class="form-control"
-                                                     value="">
+                                                     value="{{$orders->email}}">
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-                            </form>
+                            {{-- </form> --}}
                         </div>
                     </div>
                 </div>
-
                 <div class="col l-4">
                     <div class="payment_detail line">
                         <div class="payment_detail--title">
                             <span>Thông tin thanh toán</span>
                         </div>
-                        <div class="payment_detail--form ">
-                            <form action="" >
-                                <div class="form-body">
-                                    <div class="row">
-                                        <div class="col l-12">
-                                            <div class="form-group">
-                                                <label for="">Số thẻ</label>
-                                                <input type="text" name="" class="form-control"
-                                                     value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col l-12">
-                                            <div class="form-group">
-                                                <label for="">Họ và tên chủ thẻ</label>
-                                                <input type="text" name="" class="form-control"
-                                                     value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col l-10">
-                                            <div class="form-group">
-                                                <label for="">Ngày hết hạn</label>
-                                                <input type="text" name="" class="form-control"
-                                                     value="">
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="row">
-                                        <div class="col l-4">
-                                            <div class="form-group">
-                                                <label for="">CVV/CVC</label>
-                                                <input type="text" name="" class="form-control"
-                                                     value="">
-                                            </div>
-                                        </div>
+                        <div class="payment_detail--form">
+                            <div class='row'>
+                                <div class="col l-12">
+                                    <div class='form-group card required'>
+                                        <label class='control-label'>Số thẻ</label> 
+                                        <input
+                                            autocomplete='off' class='form-control card-number' size='20'
+                                            type='text' name="cardNumber">
                                     </div>
                                 </div>
-                                <a href="{{route('paymentSuccess')}}" type="submit" class="btn btn-payment">Thanh toán</a>
-                            </form>
+                            </div>
+                            <div class='row'>
+                                <div class="col l-12">
+                                    <div class='form-group required'>
+                                        <label class='control-label'>Họ và tên chủ thẻ</label> 
+                                        <input class='form-control' size='4' type='text' placeholder='NGUYEN VAN A' name="cardName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col l-6">
+                                    <div class='form-group expiration required'>
+                                        <label class='control-label'>Tháng hết hạn</label> 
+                                        <input class='form-control card-expiry-month' placeholder='MM' size='2'
+                                            type='text' name="expiryMonth">
+                                    </div>
+                                </div>
+                                <div class="col l-6">
+                                    <div class='form-group expiration required'>
+                                        <label class='control-label'>Năm hết hạn</label> 
+                                        <input class='form-control card-expiry-year' placeholder='YYYY' size='4'
+                                            type='text' name="expiryYear">
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div class='row'>
+                                <div class="col l-4">
+                                    <div class='form-group cvc required'>
+                                        <label class='control-label'>CVV/CVC</label> 
+                                        <input autocomplete='off' class='form-control card-cvc' placeholder='311' size='4'
+                                            type='text' name="cvv">
+                                    </div>
+                                </div>
+                            </div>
+                            <button href="" type="submit" class="btn btn-payment">Thanh toán</button>
+                            {{-- <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>   --}}
                         </div>
                     </div>
                 </div>
             </div>
+        </form>
+            @if (Session::has('success'))
+                <div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <p>{{ Session::get('success') }}</p>
+                </div>
+            @endif
+            {{-- </div> --}}
         </div>
     </div>
     <div class="payment_image">
@@ -136,3 +156,4 @@
     </div>
 </div>
 @endsection
+

@@ -53,7 +53,6 @@
                                 </div>
                                 <button type="submit" id="myBtn" class="btn btn-submit"  data-bs-toggle="modal" data-bs-target="#exampleModal">Đặt vé</button>
                                 @csrf
-                               
                             </form>
                         </div>
                     </div>
@@ -95,24 +94,16 @@
             </div>
         </div>
     </div>
-    @if(session('success'))
-    <!-- The Modal -->
-    <div id="myModal" class="modal alert alert-success">
+    
+     <!-- The Modal -->
+     <div class="modal alert-error">
         <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            {{session('success')}}
+          <div class="modal-content">
+              <span class="close">&times;</span>
+              <p>@include('layouts.alert')</p>
           </div>
-      </div>
-    @endif
-                {{-- <!-- The Modal -->
-                <div id="myModal" class="modal">
-                  <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>Gửi liên hệ thành công. Vui lòng kiên nhẫn đợi phản hồi từ chúng tôi, bạn nhé!</p>
-                    </div>
-                </div> --}}
+      </div> 
+        {{-- {!!$alert!!} --}}
     <div class="contact_image">
         <img class="contact_image--item-1" src="./assets/img/Alex_AR_Lay_Do shadow 1.png" alt="">
     </div>

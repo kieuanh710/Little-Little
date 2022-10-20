@@ -19,12 +19,12 @@
                                     <div class="detailEvent_item--content">
                                         <div class="detailEvent_item--date">
                                             <i class="fas fa-calendar"></i>
-                                            <span>{{$detail->start}} - </span>
+                                            <span> {{$detail->nameEvent}} </span>
                                             
                                         </div>
                                         <span>Đầm sen Park</span>
                                         <div class="detailEvent_item--price">
-                                            <span>25.000 VND</span>
+                                            <span>{{$detail->priceEvent}}  VND</span>
                                         </div>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                 <div class="detailEvent_item">
                                     <div class="detailEvent_context">
                                         <span>Lorem Ipsum</span>
-                                        <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic sdsd typesetting, remaining cssa essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, of Lorem Ipsum.</p>
+                                        <p>{{$detail->desEvent}} </p>
                                     </div>
                                 </div>
                             </div>

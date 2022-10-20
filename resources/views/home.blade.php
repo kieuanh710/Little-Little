@@ -81,23 +81,16 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col l-4">
+                                        <div class="col l-5">
                                             <div class="form-group">
                                                 <input type="text" name="quantity" class="form-control"
                                                     placeholder="Số lượng vé" value="">
                                             </div>
                                         </div>
-                                        <div class="col l-6">
-                                            <div class="form-group">
-                                                <input type="text" name="date" class="form-control"
-                                                    placeholder="Ngày sử dụng" value="">
-                                            </div>
-                                        </div>
-                                        <div class="col l-2">
-                                            <div class="calendar">
-                                                <button class="calendar round"> 
-                                                    <i class="fas fa-thin fa-calendar-days"></i>
-                                                </button>
+                                        <div class="col l-7">
+                                            <div class="form-group" style="flex-flow: row">
+                                                <input type="date" name="date" id="date" class="form-control" 
+                                                placeholder="dd/mm/yyyy">
                                             </div>
                                         </div>
                                     </div>

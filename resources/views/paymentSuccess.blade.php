@@ -9,18 +9,24 @@
     <div class="paymentSuccess_container line">
         <div class="paymentSuccess_content">
             <a href="#" class="previous round">&#8249;</a>
+            {{-- @foreach ($orderList as $item) --}}
             <div class="row">
                 <div class="col l-3">
                     <div class="paymentSuccess_item">
-                        <img src="./assets/img/image 3.png" alt="">
+                        <img src="data:image/png;base64, {{ base64_encode(QrCode::size(500)->format('png')->generate('Make me into a QrCode!')) }}">
                         <div class="paymentSuccess_item--content">
-                            <h3>LAR28732432</h3>
+                            <h3></h3>
                             <span>VÉ CỔNG</span>
                             <p>---</p>
                             <div class="paymentSuccess_item--date">
-                                <span>Ngày sử dụng:</span>
+                                <span>Ngày sử dụng: </span>
                                 <span>sád</span>
                             </div>
+                        </div>
+                    </div>
+                    </body>
+                    </html>
+                    
                             {{-- <img src="./assets/img/tick 1.png" alt="" class="paymentSuccess_tick"> --}}
                             {{-- <i class="paymentSuccess_tick fa-regular fa-circle-check"></i> --}}
                             <i class="paymentSuccess_tick fas fa-solid fa-check"></i>
@@ -28,6 +34,7 @@
                     </div>
                 </div>
             </div>
+            {{-- @endforeach --}}
             <a href="#" class="next round">&#8250;</a>
             <div class="paymentSuccess_total">
                 <span>Số lượng vé: </span>

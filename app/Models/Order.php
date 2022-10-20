@@ -15,7 +15,9 @@ class Order extends Model
     ];
     protected $guarded = [];
     public function getAllOrder(){
-        return DB::table($this->table)->get();
+        return DB::table($this->table)
+        ->join('types_ticket', 'orders.idTypeTicket', 'types_ticket.idTicket')
+        ->select('orders.*', 'types_ticket.priceTicket')->get();
     }
     public function addOrder($data){
         return DB::table($this->table)->insert($data);
