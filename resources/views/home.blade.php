@@ -65,7 +65,7 @@
                         </div>
                         @include('layouts.alert')
                         <div class="home_reservation-form">
-                            <form action="" method="POST">
+                            <form action="{{route('addOrder')}}" method="POST">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col l-12">
@@ -75,8 +75,6 @@
                                                     <option selected="selected" value="{{$list->idTicket}}">{{$list->nameTicket}}</option>
                                                     @endforeach
                                                 </select>
-                                               
-                                               
                                             </div> 
                                         </div>
                                     </div>

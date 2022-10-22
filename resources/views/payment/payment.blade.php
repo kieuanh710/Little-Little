@@ -10,7 +10,7 @@
         <div class="payment_content">
             <form 
                 role="form" 
-                action="{{route('payment')}}" 
+                action="{{route('paymentSuccess', ['id'=>$orders->id])}}" 
                 method="post" 
                 class="require-validation"
                 data-cc-on-file="false"
@@ -103,7 +103,7 @@
                                 <div class="col l-12">
                                     <div class='form-group required'>
                                         <label class='control-label'>Họ và tên chủ thẻ</label> 
-                                        <input class='form-control' size='4' type='text' placeholder='NGUYEN VAN A' name="cardName">
+                                        <input class='form-control' size='4' type='text' placeholder='Ex: NGUYEN VAN A' name="cardName">
                                     </div>
                                 </div>
                             </div>
@@ -128,12 +128,12 @@
                                 <div class="col l-4">
                                     <div class='form-group cvc required'>
                                         <label class='control-label'>CVV/CVC</label> 
-                                        <input autocomplete='off' class='form-control card-cvc' placeholder='311' size='4'
+                                        <input autocomplete='off' class='form-control card-cvc' placeholder='Ex: 311' size='4'
                                             type='text' name="cvv">
                                     </div>
                                 </div>
                             </div>
-                            <button href="" type="submit" class="btn btn-payment">Thanh toán</button>
+                            <button type="submit" class="btn btn-payment">Thanh toán</button>
                             {{-- <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>   --}}
                         </div>
                     </div>

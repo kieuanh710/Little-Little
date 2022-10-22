@@ -6,7 +6,7 @@
                 <div class="col l-2">
                     <div class="navbar_logo">
                         <a href="/home">
-                            <img src="./assets/img/Little & Little Logo (ngang) 1.png" alt=" ">
+                            <img src="../assets/img/Little & Little Logo (ngang) 1.png" alt=" ">
                     </a> 
                 </div>
                 </div>

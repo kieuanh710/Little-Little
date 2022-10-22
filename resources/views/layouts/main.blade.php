@@ -8,16 +8,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Open+Sans:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
-    <link href="./assets/font/fontawesome-free-6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/grid.css">
-    <link rel="stylesheet" href="./assets/css/datepicker.css">
+    <link href="../assets/font/fontawesome-free-6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/grid.css">
+    <link rel="stylesheet" href="../assets/css/datepicker.css">
 
 </head>
 
 <body>
-    <div class="background" style="background: url('./assets/img/background.jpg') no-repeat ;">
+    <div class="background" style="background: url('../assets/img/background.jpg') no-repeat ;">
         @include('layouts.navbar')
         @yield('home')
         @yield('event')
@@ -29,10 +29,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
-    <script src="/assets/js/active.js"></script>
-    <script src="/assets/js/bootstrap.js"></script>
-    <script src="/assets/js/modal.js"></script>
-    <script src="/assets/js/datepicker.js"></script>
+    <script src="../assets/js/active.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+    <script src="../assets/js/modal.js"></script>
+    <script src="../assets/js/datepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   

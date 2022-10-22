@@ -8,14 +8,16 @@ use App\Models\Order;
 use App\Models\Event;
 use App\Models\Contact;
 use App\Models\Payment;
-use QrCode;
 use Carbon\Carbon;
-use PDF;
-use Mail;
 use App\Mail\SendMail;
+
+use QrCode;
+use PDF;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Stripe;
-use Charge;;
+use Charge;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -41,16 +43,9 @@ class HomeController extends Controller
                 'phone' => 'required',
                 'email' => 'required',
                 'date' => 'required',
-                
             ],
             [
-                'idTypeTicket' =>  'Vui lòng chọn lựa loại vé',
-                'number' =>  'Vui lòng chọn số lượng vé',
-                'quantity' =>  'Vui lòng nhập tên ',
-                'phone' =>  'Vui lòng nhập số điện thoại',
-                'email' =>  'Vui lòng nhập địa chỉ email',
-                'date' =>  'Vui lòng nhập chọn ngày sử dụng',
-                
+                'required' =>  'Vui lòng nhập đầy đủ thông tin',
             ]);
             $dataInsert = [
                 'idTypeTicket' => $request->idTypeTicket,
@@ -64,15 +59,12 @@ class HomeController extends Controller
             ];
             // dd($dataInsert);
             $this->orders->addOrder($dataInsert);
-            $orders = $this->orders->getAllOrder()->last();
+            $orders = $this->orders->getAllOrder()->get()->last();
             // dd($orders);
-            return view('payment', compact('orders'));
+            return view('payment.payment',compact('orders'));
     }
-    public function showpayment(Request $request){
-    	$orders = $this->orders->getAllOrder()->last();
-        return view('payment', compact('orders'));
-    }
-    public function payment(Request $request){
+
+    public function payment(Request $request, $id){
         $request->validate(
             [
                 'cardNumber' => 'required',
@@ -84,122 +76,68 @@ class HomeController extends Controller
             [
                 'required' =>  'Vui lòng nhập thông tin thanh toán',
             ]);
-            $dataInsert = [
-                'name' => $request->name,
-                'totalPrice' => $request->totalPrice,
-                'cardNumber' => $request->cardNumber,
-                'cardName' => $request->cardName,
-                'expiryMonth' => $request->expiryMonth,
-                'expiryYear' => $request->expiryYear,
-                'cvv' => $request->cvv,
-                'created_at'=>date('Y-m-d H:i:s'),
-                'updated_at'=>date('Y-m-d H:i:s')
-            ];
-            // dd($dataInsert);
-            $this->payments->addPayment($dataInsert);
-            $orders = $this->orders->getAllOrder()->last();
+        $data = DB::table('orders')->where('id', $id)->update([
+            'name' => $request->name,
+            'totalPrice' => $request->totalPrice,
+            'cardNumber' => $request->cardNumber,
+            'cardName' => $request->cardName,
+            'expiryMonth' => $request->expiryMonth,
+            'expiryYear' => $request->expiryYear,
+            'cvv' => $request->cvv,
+            'created_at'=>date('Y-m-d H:i:s'),
+            'updated_at'=>date('Y-m-d H:i:s')
+        ]);
+          
+        // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    	// Stripe\Charge::create([
+    	// 		"amount"=>200*100,
+    	// 		"currency"=>"usd",
+    	// 		"source"=>$request->stripeToken,
+    	// 		"description"=>"Test payment from expert rohila 2"
+    	// ]);
+        //  // print_r($request->all()); 
+        // // die();
 
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-    	Stripe\Charge::create([
-    			"amount"=>200*100,
-    			"currency"=>"usd",
-    			"source"=>$request->stripeToken,
-    			"description"=>"Test payment from expert rohila 2"
-    	]);
-         // print_r($request->all()); 
-        // die();
-    	Session::flash("success","Payment successfully!");
-        return view('paymentSuccess');
+    	// Session::flash("success","Payment successfully!");
+        
+        $payments=  DB::table('orders')->where('id', $id)->get();
+        $detail = $this->orders->getDetailOrder($id);
+        // dd($payments);
+        return view('payment.paymentSuccess', compact('payments', 'detail'));
 
     }
-    // public function generatePDF($id) {
-    //     $x = "image/qrcode".$id.".jpg";
-    //     QrCode::generate('Welcome to Makitweb', public_path($x));
-    //     $pdf = PDF::loadview('welcome');
-    //     return $pdf->download('vé.pdf');
-
-    // }
-    // public function download($flag=null, $quantity=null, $orderId=null, $customerEmail=null){
-    //     $pdf = \App::make('dompdf.wrapper');
-    //     $orderDetail = new orderDetail();
-
-    //     for($i = 0; $i < $quantity; $i++){
-    //         $orderDetailList = $orderDetail->getOrderDetails($orderId);
-    //     }
-
-    //     $a = view('clients.ticket', compact('quantity', 'orderDetailList', 'orderId', 'customerEmail'));
-
-    //     if($flag == "pdf"){
-    //         $pdf = PDF::loadHTMl($a)
-    //         ->setOptions(['defaultFont' => 'Montserrat'])
-    //         ->setPaper('f4', 'potrait')
-    //         ->setWarnings(false)
-    //         ->save('ticket.pdf', 'UTF-8');
-    //         return $pdf->stream('ticket.pdf');
-    //     }
-    //     if($flag == "email"){
-    //         $mailable = new SendMail($quantity, $orderDetailList, $orderId, $customerEmail);
-
-    //         Mail::to($customerEmail)->send($mailable);
-
-    //         return view('clients.paymentSuccess', compact('orderDetailList', 'quantity', 'orderId', 'customerEmail'));
-    //     }
-    // }
     
-    
-
-
-
-
-    //--------------------------------- EVENT---------------------------------------
-    public function event(){
-        $listEvent = $this->events->getAllEvent();
-        return view('event', compact('listEvent'));
-    }
-    public function detail(Request $request){
-        $detail = Event::where('idEvent', $request->id)->first();
+    public function export_pdf($id) {
+        $payments=  DB::table('orders')->where('id', $id)->get();
+        $detail = $this->orders->getDetailOrder($id);
         // dd($detail);
-        return view('detailEvent', compact ( 'detail'));
+        $pdf = PDF::loadview('payment.pdfticket', compact('payments', 'detail'))
+        ->setOptions(['defaultFont' => 'Montserrat'])
+        ->setPaper('f4', 'potrait')
+        ->setWarnings(false)
+        ->save('ticket.pdf', 'UTF-8');
+        return $pdf->download('ticket.pdf', compact('detail'));
     }
 
+    public function send_mail( $id){
+        $payments = DB::table('orders')->where('id',$id)->get();
+        $ticket = DB::table('orders')->where('id',$id)->first();
+        $detail =  $this->orders->getDetailOrder($id);
+        // dd($ticket->quantity);
+        $pdf = PDF::loadview('payment.pdfticket', compact('payments', 'detail'));
+        
+        $qrcode = $ticket->email;
+        $test = 'test';
+        Mail::send('email', compact('test'), function($message) use($pdf, $qrcode){
+            $message->to($qrcode, '')
+            ->subject('Vé của bạn')
+            ->attachData($pdf->output(), 'ticket.pdf');
+        });
 
-    //--------------------------------- CONTACT---------------------------------------
-    public function contact(){
-        $alert = '';
-        return view('contact', compact('alert'));
+        return view('payment.paymentSuccess', compact('payments', 'detail'))->with('message', 'Chúng tôi đã gửi mail cho bạn!!');
     }
-    public function addContact(Request $request){
-        $request->validate(
-            [
-                'name' => 'required',
-                'phone' => 'required',
-                'email' => 'required',
-                'address' => 'required',
-                'message' => 'required',
-            ],
-            [
-                'name' =>  'Vui lòng nhập tên của bạn ',
-                'phone' =>  'Vui lòng nhập số điện thoại',
-                'email' =>  'Vui lòng nhập địa chỉ email ',
-                'address' =>  'Vui lòng nhập địa chỉ liên hệ',
-                'message' =>  'Vui lòng nhập tin nhắn mà bạn muốn gửi',
-                
-            ]);
-            $dataInsert = [
-                'name' => $request->name,
-                'phone' => $request->phone,
-                'email' => $request->email,
-                'address' => $request->address,
-                'message' => $request->message,
-                'created_at'=>date('Y-m-d H:i:s'),
-                'updated_at'=>date('Y-m-d H:i:s')
-            ];
-           
-            // dd($dataInsert);
-            $this->contacts->addContact($dataInsert);
-            return redirect()->route('contact')->with('success', 
-            'Gửi liên hệ thành công. 
-            Vui lòng kiên nhẫn đợi phản hồi từ chúng tôi, bạn nhé!');
-           
-    }
+
+  
+    
+
 }
