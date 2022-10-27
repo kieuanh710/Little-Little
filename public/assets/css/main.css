@@ -172,6 +172,7 @@
   padding: 60px 20px 30px 20px;
   height: 100%;
   position: relative;
+  /* text-align: center; */
 }
 
 .home_reservation--title{
@@ -258,6 +259,9 @@
 .card-body {
   flex: 1 1 auto;
   min-height: 1px;
+}
+.card-footer{
+  text-align: center;
 }
 .form-group{
   display: flex;

@@ -117,6 +117,10 @@ img{
 .btn-down{
     margin-right: 25px;
 }
+#btn-calendar{
+    margin-top: 15px;
+    border: none;
+}
 /*  */
 .previous{
     background-color: #FFDE32;

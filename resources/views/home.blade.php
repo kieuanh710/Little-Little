@@ -85,12 +85,21 @@
                                                     placeholder="Số lượng vé" value="">
                                             </div>
                                         </div>
-                                        <div class="col l-7">
+                                        <div class="col l-5">
                                             <div class="form-group" style="flex-flow: row">
-                                                <input type="date" name="date" id="date" class="form-control" 
-                                                placeholder="dd/mm/yyyy">
+                                                {{-- <input type="date" name="date" id="date" class="form-control" 
+                                                placeholder="dd/mm/yyyy"> --}}
+                                                <input type="datetime" class="date" name="date" id="date" placeholder="Ngày sử dụng" required/>
                                             </div>
                                         </div>
+                                        <div class="col l-2">
+                                            <div class="form-group" style="flex-flow: row">
+                                                <a id="btn-calendar">
+                                                    <i class="fas fa-light fa-calendar-days"> </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        @include('layouts.datepicker')
                                     </div>
                                     <div class="row">
                                         <div class="col l-12">
@@ -117,7 +126,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-submit">Đặt vé</button>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-submit">Đặt vé</button>
+                                </div>
                                 @csrf
                             </form>
                         </div>

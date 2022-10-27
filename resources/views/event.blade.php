@@ -7,6 +7,7 @@
     </div>
     <!-- content -->
     <div class="event_container">
+        <a class="previous round" id="previous">&#8249;</a>
         <div class="event_content">
             <div class="row">
                 @foreach($listEvent as $key => $item)
@@ -31,6 +32,7 @@
                 @endforeach
             </div>
         </div>
+        <a class="next round" id="next">&#8250;</a>
     </div>
     <div class="event_image">
         <img class="event_image--item-1"  src="./assets/img/Frame (3).png" alt="">
