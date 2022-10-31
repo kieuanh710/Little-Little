@@ -19,10 +19,10 @@
                                     <div class="detailEvent_item--content">
                                         <div class="detailEvent_item--date">
                                             <i class="fas fa-calendar"></i>
-                                            <span> {{$detail->nameEvent}} </span>
+                                            <span> {{$detail->start}} - {{$detail->end}}</span>
                                             
                                         </div>
-                                        <span>Đầm sen Park</span>
+                                        <span>{{$detail->nameEvent}}</span>
                                         <div class="detailEvent_item--price">
                                             <span>{{$detail->priceEvent}}  VND</span>
                                         </div>

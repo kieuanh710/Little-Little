@@ -92,6 +92,7 @@ img{
     align-items: center;
     justify-content: center;
     color: #FFFFFF;
+    width: 100%;
 }
 .btn-payment{
     font-weight: 900;
@@ -122,9 +123,10 @@ img{
     border: none;
 }
 /*  */
-.previous{
+.prev{
     background-color: #FFDE32;
     color: black;
+    border: none;
     position: absolute;
     left: 10px;
     top: 50%;
@@ -132,13 +134,14 @@ img{
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 12px 0 0 #FFD27B;
+    box-shadow: 0 8px 0 0 #FFD27B;
     border-radius: 12px;
 
 }
 .next {
     background-color: #FFDE32;
     color: black;
+    border: none;
     position: absolute;
     right: 10px;
     top: 50%;
@@ -146,10 +149,14 @@ img{
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 12px 0 0 #FFD27B;
+    box-shadow: 0 8px 0 0 #FFD27B;
     border-radius: 12px;
   }
-  .calendar{
+
+  .round > .icon{
+    color: #fff;
+  }
+.calendar{
     background-color: #FFDE32;
     color: black;
     position: absolute;
@@ -162,8 +169,8 @@ img{
     box-shadow: 0 6px 0 0 #ffd27b;
     border-radius: 12px;
     border: none;
-  }
-  .calendar i{
+}
+.calendar i{
     color: #fff;
   }
 .round {

@@ -13,7 +13,7 @@
                     <div class="contact_form line">
                         <div class="contact_form--content">
                             <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac mollis justo. Etiam volutpat tellus quis risus volutpat, ut posuere ex facilisis.</span>
-                            <form action="" method="post" class="form-contact">
+                            <form action="{{route('addcontact')}}" method="post" class="form-contact">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col l-5">
@@ -51,7 +51,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" id="myBtn" class="btn btn-submit"  data-bs-toggle="modal" data-bs-target="#exampleModal">Đặt vé</button>
+                                <button type="submit" id="myBtn" onclick="setTimeout(myFunction, 10000)" class="btn btn-submit"  data-bs-toggle="modal" data-bs-target="#exampleModal">Gửi liên hệ</button>
+                               
                                 @csrf
                             </form>
                         </div>
@@ -87,16 +88,14 @@
                                     </div>
                                 </div>
                             </div>
-                           
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
      <!-- The Modal -->
-     <div class="modal alert-error">
+     <div class="modal" id="modal">
         <!-- Modal content -->
           <div class="modal-content">
               <span class="close">&times;</span>

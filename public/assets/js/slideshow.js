@@ -1,44 +1,30 @@
-const slides = document.querySelector('slideshow')
-const leftBt = document.getElementById('previous')
-const rightBt = document.getElementById('next')
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+const carousel = document.querySelector(".carousel-container");
+const track = document.querySelector(".track");
 
+let width = carousel.offsetWidth;
+let index = 0;
 
-const div = document.querySelectorAll('.slideshow .pro-loop')
+window.addEventListener("resize", function () {
+  width = carousel.offsetWidth;
+});
 
-let i = 0
+next.addEventListener("click", function (e) {
+  e.preventDefault();
+  index = index + 1;
+  prev.classList.add("show");
+  track.style.transform = "translateX(" + index * -width + "px)";
+  if (track.offsetWidth - index * width < index * width) {
+    next.classList.add("hide");
+  }
+});
 
-let interval = setInterval(run, 2000)
-
-function run() {
-    i++
-    changeSlide()
-}
-
-function changeSlide() {
-    if (i > div.length - 4) {
-        i = 0
-    } else if (i < 0) {
-        i = div.length - 4
-    }
-    slides.style.transform = `translateX(${-i *25}%)`
-}
-
-function resetInterval() {
-    clearInterval(interval)
-    interval = setInterval(run, 2000)
-}
-
-rightBt.addEventListener('click', () => {
-    i++
-
-    changeSlide()
-    resetInterval()
-})
-
-
-leftBt.addEventListener('click', () => {
-    i--
-
-    changeSlide()
-    resetInterval()
-})
+prev.addEventListener("click", function () {
+  index = index - 1;
+  next.classList.remove("hide");
+  if (index === 0) {
+    prev.classList.remove("show");
+  }
+  track.style.transform = "translateX(" + index * -width + "px)";
+});

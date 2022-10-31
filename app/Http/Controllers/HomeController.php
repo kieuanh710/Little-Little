@@ -88,15 +88,15 @@ class HomeController extends Controller
             'updated_at'=>date('Y-m-d H:i:s')
         ]);
           
-        // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-    	// Stripe\Charge::create([
-    	// 		"amount"=>200*100,
-    	// 		"currency"=>"usd",
-    	// 		"source"=>$request->stripeToken,
-    	// 		"description"=>"Test payment from expert rohila 2"
-    	// ]);
-        //  // print_r($request->all()); 
-        // // die();
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    	Stripe\Charge::create([
+    			"amount"=>200*100,
+    			"currency"=>"usd",
+    			"source"=>$request->stripeToken,
+    			"description"=>"Test payment from expert rohila 2"
+    	]);
+         // print_r($request->all()); 
+        // die();
 
     	// Session::flash("success","Payment successfully!");
         
@@ -133,9 +133,17 @@ class HomeController extends Controller
             ->subject('Vé của bạn')
             ->attachData($pdf->output(), 'ticket.pdf');
         });
+    	Session::flash("success","Chúng tôi đã gửi mail cho bạn!!");
 
-        return view('payment.paymentSuccess', compact('payments', 'detail'))->with('message', 'Chúng tôi đã gửi mail cho bạn!!');
+        return view('payment.paymentSuccess', compact('payments', 'detail'));
     }
+    // test
+    // public function paymentSuccess($id){
+    //     $payments = DB::table('orders')->where('id',$id)->get();
+    //     $ticket = DB::table('orders')->where('id',$id)->first();
+    //     $detail =  $this->orders->getDetailOrder($id);
+    //     return view('payment.paymentSuccess', compact('payments', 'detail'))->with('message', 'Chúng tôi đã gửi mail cho bạn!!');
+    // }
 
   
     

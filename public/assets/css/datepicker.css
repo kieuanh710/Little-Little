@@ -31,8 +31,8 @@ ul{
   font-size: 24px;
 }
 
-.months .prev {
-  float: left;
+.months .prev-calendar {
+  float: left ;
   padding-right: 15px;
   font-size: 20px;
 }

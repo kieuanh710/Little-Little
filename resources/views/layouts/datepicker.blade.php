@@ -1,7 +1,7 @@
 <div class="calendar" id="calendar">
     <div class="months">
         <ul>
-            <li class="prev" id="prev">&#10094;</li>
+            <li class="prev-calendar" id="prev">&#10094;</li>
             <li class="next-calendar" id="next">&#10095;</li>
             <li style="text-align: center;">
                 <span>Tháng </span>

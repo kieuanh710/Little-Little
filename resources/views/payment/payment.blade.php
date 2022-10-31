@@ -91,7 +91,7 @@
                         <div class="payment_detail--form">
                             <div class='row'>
                                 <div class="col l-12">
-                                    <div class='form-group card required'>
+                                    <div class='form-group required'>
                                         <label class='control-label'>Số thẻ</label> 
                                         <input
                                             autocomplete='off' class='form-control card-number' size='20'

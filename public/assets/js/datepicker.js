@@ -49,21 +49,13 @@ var dateEle = document.getElementById('days');
 renderDate(currentYear, currentMonth)
 btn_prev.addEventListener("click", () => {
     click += 1
-
-    // xóa ngày của tháng trước
-    // có thể sử dụng e.firstElementChild
     let child = dateEle.lastElementChild;
 
-    // loop cho đến khi child không tồn tại thì dừng lại
     while (child) {
-        // xóa child
         dateEle.removeChild(child);
-
-        // gán child bằng phần tử con cuối cùng mới
         child = dateEle.lastElementChild;
     }
 
-    // hiện ngày của tháng hiện tại
     currentMonth = currentMonth - 1
 
     if ((currentMonth) < 0) {
@@ -80,20 +72,12 @@ btn_prev.addEventListener("click", () => {
 btn_next.addEventListener("click", () => {
     click += 1
 
-    // xóa ngày của tháng trước
-    // có thể sử dụng e.firstElementChild
     let child = dateEle.lastElementChild;
-
-    // loop cho đến khi child không tồn tại thì dừng lại
     while (child) {
-        // xóa child
         dateEle.removeChild(child);
-
-        // gán child bằng phần tử con cuối cùng mới
         child = dateEle.lastElementChild;
     }
 
-    // hiện ngày của tháng hiện tại
     currentMonth = currentMonth + 1
 
     if ((currentMonth) > 11) {
@@ -106,19 +90,17 @@ btn_next.addEventListener("click", () => {
     renderDate(currentYear, currentMonth);
 })
 
-// Lấy số ngày của 1 tháng
+
 function getDaysInMonth(y, m) {
     d = new Date(y, m + 1, 0)
     return d.getDate();
 }
 
-// Lấy ngày bắt đầu của tháng
 function getStartDayInMonth(y, m) {
     d = new Date(y, m, 1)
     return d.getDay();
 }
 
-// Hiển thị ngày trong tháng lên trên giao diện
 function renderDate(y, m) {
     let daysInMonth = getDaysInMonth(y, m);
     let daysStart = getStartDayInMonth(y, m);

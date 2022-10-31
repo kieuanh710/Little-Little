@@ -21,7 +21,7 @@ Route::prefix('/')->group(function () {
     Route::post('/payment', [HomeController::class,'addOrder'])->name('addOrder');
 
     Route::post('/paymentSuccess/{id}', [HomeController::class,'payment'])->name('paymentSuccess');
-    // Route::get('/paymentSuccess', [HomeController::class,'paymentSuccess']);
+    Route::get('/paymentSuccess/{id}', [HomeController::class,'paymentSuccess']);
     
 
     Route::get('/event', [EventController::class,'event'])->name('event');
